@@ -1,0 +1,12 @@
+[flake8]
+exclude =
+    .git,
+    __pycache__,
+    venv
+per-file-ignores =
+    mysite/settings/default.py: E501
+    mysite/settings/local.py: F405
+
+[pycodestyle]
+in-place = true
+recursive = true

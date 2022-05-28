@@ -1,7 +1,7 @@
-from rest_framework.views import APIView,Response
+from rest_framework.views import APIView, Response
 
 
 class UserProfile(APIView):
 
-	def get(self, request):
-		return Response(data={"result": "OK"})
+    def get(self, request):
+        return Response(data={"result": "OK"})

@@ -6,6 +6,8 @@ exclude =
 per-file-ignores =
     mysite/settings/default.py: E501
     mysite/settings/local.py: F405
+    mysite/settings/prod.py: F405
+    mysite/settings/dev.py: F405
 
 [pycodestyle]
 in-place = true

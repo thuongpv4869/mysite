@@ -179,3 +179,6 @@ cython_debug/
 #================== App ============================
 .vscode
 tests.http
+venv
+mysite/settings/local.py
+data

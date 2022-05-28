@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django = "*"
 djangorestframework = "*"
+psycopg2 = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"
@@ -13,6 +14,8 @@ django-extensions = "*"
 flake8 = "*"
 autopep8 = "*"
 pre-commit = "*"
+pipenv = "*"
+debugpy = "*"
 
 [requires]
 python_version = "3.8"

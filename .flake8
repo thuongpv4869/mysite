@@ -3,6 +3,7 @@ exclude =
     .git,
     __pycache__,
     venv
+    */migrations/*
 per-file-ignores =
     mysite/settings/default.py: E501
     mysite/settings/local.py: F405

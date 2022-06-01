@@ -15,6 +15,13 @@ class ApiResponseBody():
             "error": self.error
         }
 
+    @classmethod
+    def from_json(cls, json_data):
+        data = json_data["data"]
+        error = json_data["error"]
+
+        return cls(data, error=error)
+
 
 def get_api_response(data, error=None, status=status.HTTP_200_OK):
     body = ApiResponseBody(data, error).json()

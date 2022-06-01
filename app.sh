@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$1" == "up" ]; then
-	docker-compose up
+	docker-compose up web
 
 elif [ "$1" == "build" ]; then
 	export DOCKER_BUILDKIT=1

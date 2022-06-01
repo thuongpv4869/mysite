@@ -3,6 +3,7 @@ from .default import *  # noqa: F403
 
 
 INSTALLED_APPS += [
+    'rest_framework',
     'core',
 ]
 

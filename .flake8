@@ -5,10 +5,10 @@ exclude =
     venv
     */migrations/*
 per-file-ignores =
-    mysite/settings/default.py: E501
-    mysite/settings/local.py: F405
-    mysite/settings/prod.py: F405
-    mysite/settings/dev.py: F405
+    config/settings/default.py: E501
+    config/settings/local.py: F405
+    config/settings/prod.py: F405
+    config/settings/dev.py: F405
 
 [pycodestyle]
 in-place = true

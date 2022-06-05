@@ -180,5 +180,5 @@ cython_debug/
 .vscode
 tests.http
 venv
-mysite/settings/local.py
+config/settings/local.py
 data

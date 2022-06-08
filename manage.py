@@ -1,17 +1,18 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
-import os
+from pj_utils import env
 import sys
+import os
 
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.prod')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')
 
     from django.conf import settings
 
-    if settings.DEBUG and os.environ.get('DEBUG_VSCODE'):
-        if os.environ.get('RUN_MAIN') or os.environ.get('WERKZEUG_RUN_MAIN'):
+    if settings.DEBUG and env.bool('DJANGO_DEBUG_VSCODE', False):
+        if env.bool('RUN_MAIN', False) or os.environ.get('WERKZEUG_RUN_MAIN'):
             import debugpy
             debugpy.listen(("0.0.0.0", 5678))
             print('Attached!')

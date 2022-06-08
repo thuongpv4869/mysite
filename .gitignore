@@ -182,3 +182,4 @@ tests.http
 venv
 config/settings/local.py
 data
+*.env

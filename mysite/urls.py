@@ -1,22 +1,20 @@
-from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
-from drf_spectacular.views import (
-    SpectacularAPIView,
-    SpectacularRedocView,
-    SpectacularSwaggerView
-)
 
 from mysite.api.urls import urlpatterns as api_urlpatterns
 
-app_name = 'mysite'
+app_name = "mysite"
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('api/', include((api_urlpatterns, app_name), namespace='api')),
 ]
 
 if settings.DEBUG:
+    from drf_spectacular.views import (
+        SpectacularAPIView,
+        SpectacularRedocView,
+        SpectacularSwaggerView
+    )
     urlpatterns += [
 
         # open api 3

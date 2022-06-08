@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  django:
+    build:
+      context: ../../
+      dockerfile: docker/prod/Dockerfile.prod
+    command: [ "/bin/sh", "-c", "python manage.py migrate && gunicorn -c /code/config/gunicorn.conf.py" ]
+    ports:
+      - "8008:8000"
+    environment:
+      - DOT_ENV_FILE=docker/prod/django.env

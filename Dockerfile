@@ -4,13 +4,10 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /code
 
-COPY Pipfile /code
-COPY Pipfile.lock /code
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+ENV PATH="$PATH:/root/.poetry/bin"
+RUN poetry config virtualenvs.create false
 
-RUN --mount=type=cache,target=/root/.cache/pip pip install pipenv
+COPY pyproject.toml poetry.lock /code/
 
-RUN virtualenv /venv
-ENV VIRTUAL_ENV=/venv
-ENV PATH="/venv/bin:$PATH"
-
-RUN --mount=type=cache,target=/root/.cache/pipenv pipenv install --dev -v
+RUN --mount=type=cache,target=/root/.cache/poetry poetry install --no-interaction --no-ansi

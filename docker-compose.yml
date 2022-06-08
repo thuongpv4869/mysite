@@ -1,25 +1,27 @@
 version: "3.9"
-   
+
 services:
   db:
     image: postgres:14.3
     volumes:
       - mysite_db:/var/lib/postgresql/data
     env_file:
-      - .env/db.env
+      - .envs/local/db.env
     ports:
-      - "5432:5432"
+      - "${DOCKER_POSTGRES_HOST_PORT:-5432}:${POSTGRES_PORT:-5432}"
     
-  web:
-    build: .
-    command: tail -f /dev/null
+  django:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: ["/bin/sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
     volumes:
       - .:/code
     ports:
-      - "8000:8000"
-      - "5678:5678"
+      - "${DOCKER_DJANGO_HOST_PORT:-8000}:8000"
+      - "${DOCKER_DJANGO_DEBUG_HOST_PORT:-5678}:5678"
     env_file:
-      - .env/web.env
+      - .envs/local/django.env
     depends_on:
       - db
   

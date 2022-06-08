@@ -1,28 +1,53 @@
 #!/bin/bash
 
-if [ "$1" == "ctn" ]; then
-	if [ "$2" == "up" ]; then
-		python manage.py runserver 0.0.0.0:8000
+is_django_running () {
+	if docker ps --format '{{.Names}}' | grep -w mysite_django_1 &> /dev/null; then
+    	return 0
 	fi
-fi
+	return 1
+}
 
 if [ "$1" == "up" ]; then
-	docker-compose up -d
+	docker-compose up django
+	exit
+fi
 
-elif [ "$1" == "build" ]; then
+if [ "$1" == "setup-devtool" ]; then
+	pip install autopep8
+	pip install pre-commit
+	exit
+fi
+
+if [ "$1" == "build" ]; then
 	export DOCKER_BUILDKIT=1
 	docker-compose build --progress=plain
+	exit
+fi
 
-elif [ "$1" == "fmt" ]; then
+if [ "$1" == "fmt" ]; then
 	autopep8 -r -i .
+	exit
+fi
 	
-elif [ "$1" == "lint" ]; then
+if [ "$1" == "lint" ]; then
 	pre-commit run --all-files
+	exit
+fi
 
-elif [ "$1" == "fze" ]; then
-	docker exec mysite_web_1 pipenv requirements > requirements/prod.txt
-	docker exec mysite_web_1 pipenv requirements --dev > requirements/local.txt
+if [ "$1" == "bash" ]; then
+	if is_django_running; then
+    	docker-compose exec django bash
+	else
+		docker-compose run django bash
+	fi
+	exit
+fi
 
-elif [ "$1" == "bash" ]; then
-	docker exec -it mysite_web_1 bash
+if [ "$1" == "test" ]; then
+	if is_django_running; then
+    	docker-compose exec django python manage.py test
+	else
+		docker-compose run django python manage.py test
+	fi
+	exit
 fi

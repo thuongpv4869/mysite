@@ -13,8 +13,7 @@ if [ "$1" == "up" ]; then
 fi
 
 if [ "$1" == "setup-devtool" ]; then
-	pip install autopep8
-	pip install pre-commit
+	pip install flake8 autopep8 pre-commit
 	exit
 fi
 

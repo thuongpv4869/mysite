@@ -1,9 +1,14 @@
-### 
+### 1. Run project at local
+1. Install docker, docker-compose
+2. Create `.env`, `envs/local/*.env` as example.env
+3. Build: `./app.sh build`
+4. Run: `./app.sh up`
+5. Check api doc at: `http://localhost:8000/api/schema/redoc/`
 
-### Setup lint tool
-- `pip install autopep8`
-- `pip install pre-commit`
+### 2. Setup dev
+1. Install python and create venv, activate venv
+1. Setup dev tools: `./app.sh setup-devtool`
 
-### Run test
-- test helper
-  ``
+
+### 3. Run test
+1. Run test: `./app.sh test`

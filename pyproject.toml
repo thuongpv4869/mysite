@@ -6,7 +6,7 @@ authors = ["thuongpv <ckpvthuongft@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-Django = "^4.0.5"
+Django = "^4.0.6"
 psycopg2 = "^2.9.3"
 djangorestframework-simplejwt = "^5.2.0"
 gunicorn = "^20.1.0"
